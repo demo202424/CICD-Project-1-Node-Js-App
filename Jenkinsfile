@@ -10,7 +10,7 @@ pipeline {
             agent { label 'agent1' 
             }
             steps{
-                sh 'docker build . -t jaydeep007docker/my-node-app:latest'
+                sh 'docker build . -t goluops/devops/my-node-app:latest'
             }
         }
         stage('Push') { 
@@ -19,7 +19,7 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'MyDockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                 sh 'docker push jaydeep007docker/my-node-app:latest'
+                 sh 'docker push goluops/devops/my-node-app:latest'
                 }
             }
         }
